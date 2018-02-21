@@ -31,7 +31,7 @@ messaging.requestPermission()
 
 // Handle incoming messages
 messaging.onMessage(function(payload) {
-  console.log("Message received. ", payload);
+  console.log("Notification received: ", payload);
   toastr["info"](payload.notification.body, payload.notification.title);
 });
 
