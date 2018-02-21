@@ -1,0 +1,9 @@
+curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
+  "notification": {
+    "title": "New Article",
+    "body": "Firebase Realtime Database using Python SDK",
+    "icon": "alarm.png",
+    "click_action": "http://rakibul.net/fb-realtime-db-python"
+  },
+  "to": "d9wiwOhj7ME:APA91bE2HagjEawPj0FTgo8Zv1Ur4zWsExgD0figYD3BC6NeLlMXKhYWFAPLqS1T6OUGVqKYb9KEuCJ9Ex6qeHo5mibaD76EVQvOrzzNSyRK-TQ4Dxexr48ujPFYdCpb-w71on3uNvAO"
+}' "https://fcm.googleapis.com/fcm/send"
