@@ -1,56 +1,72 @@
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
+# For sending notification
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
   "notification": {
     "title": "New Article",
-    "body": "Firebase Realtime Database using Python SDK",
+    "body": "Firebase Cloud Messaging for Web using JavaScript",
     "icon": "alarm.png",
-    "click_action": "http://rakibul.net/fb-realtime-db-python"
+    "click_action": "http://rakibul.net/fcm-web-js"
   },
-  "to": "d9wiwOhj7ME:APA91bE2HagjEawPj0FTgo8Zv1Ur4zWsExgD0figYD3BC6NeLlMXKhYWFAPLqS1T6OUGVqKYb9KEuCJ9Ex6qeHo5mibaD76EVQvOrzzNSyRK-TQ4Dxexr48ujPFYdCpb-w71on3uNvAO"
+  "to": "<your_client_token>"
 }' "https://fcm.googleapis.com/fcm/send"
 
 
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -H "Content-Length: 0" "https://iid.googleapis.com/iid/v1/d9wiwOhj7ME:APA91bE2HagjEawPj0FTgo8Zv1Ur4zWsExgD0figYD3BC6NeLlMXKhYWFAPLqS1T6OUGVqKYb9KEuCJ9Ex6qeHo5mibaD76EVQvOrzzNSyRK-TQ4Dxexr48ujPFYdCpb-w71on3uNvAO/rel/topics/news"
-
-curl -X GET -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" "https://iid.googleapis.com/iid/v1/d9wiwOhj7ME:APA91bE2HagjEawPj0FTgo8Zv1Ur4zWsExgD0figYD3BC6NeLlMXKhYWFAPLqS1T6OUGVqKYb9KEuCJ9Ex6qeHo5mibaD76EVQvOrzzNSyRK-TQ4Dxexr48ujPFYdCpb-w71on3uNvAO?details=true"
-
-
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
-  "notification": {
-    "title": "New Article",
-    "body": "Firebase Realtime Database using Python SDK",
-    "icon": "alarm.png",
-    "click_action": "http://rakibul.net/fb-realtime-db-python"
-  },
-  "to": "/topics/news"
-}' "https://fcm.googleapis.com/fcm/send"
+# Subscribe to a topic
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -H "Content-Length: 0" "https://iid.googleapis.com/iid/v1/instance_tokn/rel/topics/<topic_name>"
 
 
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
-  "to": "/topics/news",
-  "registration_tokens": ["d9wiwOhj7ME:APA91bE2HagjEawPj0FTgo8Zv1Ur4zWsExgD0figYD3BC6NeLlMXKhYWFAPLqS1T6OUGVqKYb9KEuCJ9Ex6qeHo5mibaD76EVQvOrzzNSyRK-TQ4Dxexr48ujPFYdCpb-w71on3uNvAO"]
+# Subscribe multiple client apps to a topic
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
+  "to": "/topics/<topic_name>",
+  "registration_tokens": ["<your_client_token>"]
+}' "https://iid.googleapis.com/iid/v1:batchAdd"
+
+
+# Unsubscribe multiple client apps from a topic
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
+  "to": "/topics/<topic_name>",
+  "registration_tokens": ["<your_client_token>"]
 }' "https://iid.googleapis.com/iid/v1:batchRemove"
 
 
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
-  "data": {
-    "title": "New Article",
-    "body": "Firebase Realtime Database using Python SDK",
-    "icon": "alarm.png",
-    "click_action": "http://rakibul.net/fb-realtime-db-python"
-  },
-  "to": "/topics/news"
-}' "https://fcm.googleapis.com/fcm/send"
-
-curl -X POST -H "Authorization: key=AAAAFPQxzl0:APA91bHjc5Db0x1kHYcdMHBUzaRBDdYI0YiwVxshDpuPK8c9LQ-cboHKF87wcGI0BS_xZujkH0__cE61MSTV6ImiNVMkNFI7dEH-q6oJ4MTdkg50DSgsv4GwsabuYF7CWHD1X6lPNqZg" -H "Content-Type: application/json" -d '{
+# Send notification messages to a topic
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
   "notification": {
     "title": "New Article",
-    "body": "Firebase Realtime Database using Python SDK",
+    "body": "Firebase Cloud Messaging for Web using JavaScript",
     "icon": "alarm.png",
-    "click_action": "http://rakibul.net/fb-realtime-db-python"
+    "click_action": "http://rakibul.net/fcm-web-js"
+  },
+  "to": "/topics/<topic_name>"
+}' "https://fcm.googleapis.com/fcm/send"
+
+
+# Send data messages to a topic
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
+  "data": {
+    "title": "New Article",
+    "body": "Firebase Cloud Messaging for Web using JavaScript",
+    "icon": "alarm.png",
+    "click_action": "http://rakibul.net/fcm-web-js"
+  },
+  "to": "/topics/<topic_name>"
+}' "https://fcm.googleapis.com/fcm/send"
+
+
+# Notification message with data payload
+curl -X POST -H "Authorization: key=<your_server_key>" -H "Content-Type: application/json" -d '{
+  "notification": {
+    "title": "New Article",
+    "body": "Firebase Cloud Messaging for Web using JavaScript",
+    "icon": "alarm.png",
+    "click_action": "http://rakibul.net/fcm-web-js"
   },
   "data": {
     "title": "rakibul.net",
     "body": "This is a background notification"
   },
-  "to": "/topics/news"
+  "to": "/topics/<topic_name>"
 }' "https://fcm.googleapis.com/fcm/send"
+
+
+# Get information about client app
+curl -X GET -H "Authorization: key=<your_server_key>" "https://iid.googleapis.com/iid/v1/<your_client_token>?details=true"
